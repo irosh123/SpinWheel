@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Designer Systems &ndash; Spin &amp; Win</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{--blue:#1e9fe0;--blue-bright:#42b8f0;}
+html,body{width:100%;min-height:100%;}
+body{
+  font-family:'Exo 2','Segoe UI',Arial,sans-serif;color:#fff;
+  min-height:100vh;min-height:-webkit-fill-available;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:clamp(20px,4vh,44px) 16px calc(clamp(20px,4vh,44px) + env(safe-area-inset-bottom,0px));
+  position:relative;overflow-x:hidden;text-align:center;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(30,159,224,.20), transparent 55%),
+    radial-gradient(circle at 12% 84%, rgba(10,61,143,.28), transparent 52%),
+    radial-gradient(circle at 88% 80%, rgba(20,119,196,.18), transparent 50%),
+    linear-gradient(160deg,#06122b 0%,#0a1229 45%,#04091a 100%);
+  background-attachment:fixed;
+}
+.wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.6vh,26px);width:100%;max-width:460px;}
+.brand{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.brand img{height:clamp(64px,12vh,120px);width:auto;filter:drop-shadow(0 0 14px rgba(30,159,224,.25));}
+.brand .name{font-family:'Orbitron',Arial,sans-serif;font-weight:900;font-size:clamp(1rem,4.6vw,1.5rem);letter-spacing:.14em;color:#fff;line-height:1;}
+.brand .sub{font-size:clamp(.56rem,2.2vw,.72rem);letter-spacing:.44em;color:rgba(255,255,255,.5);text-transform:uppercase;}
+.headline{font-family:'Orbitron',Arial,sans-serif;font-weight:900;font-size:clamp(1.5rem,7vw,2.3rem);text-shadow:0 0 22px rgba(30,159,224,.55);}
+.headline .accent{color:var(--blue);}
+.tag{color:rgba(255,255,255,.62);font-size:clamp(.86rem,3.4vw,1rem);line-height:1.5;max-width:22em;}
+.qr-panel{background:#fff;border-radius:22px;padding:clamp(14px,4vw,22px);box-shadow:0 0 55px rgba(30,159,224,.25),0 22px 60px rgba(0,0,0,.6);position:relative;}
+.qr-panel::before,.qr-panel::after{content:'';position:absolute;width:30px;height:30px;border-color:var(--blue);border-style:solid;}
+.qr-panel::before{top:-3px;left:-3px;border-width:3px 0 0 3px;border-radius:6px 0 0 0;}
+.qr-panel::after{bottom:-3px;right:-3px;border-width:0 3px 3px 0;border-radius:0 0 6px 0;}
+.qr-panel img{display:block;width:clamp(200px,58vw,270px);height:auto;border-radius:8px;}
+.scan-hint{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:clamp(.8rem,3.2vw,.95rem);font-weight:700;}
+.scan-hint .dot{width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue);animation:pulse 1.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+.divider{display:flex;align-items:center;gap:12px;width:100%;max-width:300px;color:rgba(255,255,255,.35);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.15);}
+.skip-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--blue);color:#04132a;text-decoration:none;
+  border-radius:50px;padding:16px clamp(30px,9vw,54px);
+  font-family:'Orbitron',Arial,sans-serif;font-weight:900;
+  font-size:clamp(.86rem,3.6vw,1rem);letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 6px 24px rgba(30,159,224,.45);
+  transition:background .2s,transform .15s,box-shadow .2s;touch-action:manipulation;cursor:pointer;
+}
+.skip-btn:hover{background:var(--blue-bright);transform:translateY(-2px);box-shadow:0 10px 32px rgba(30,159,224,.6);}
+.skip-btn:active{transform:translateY(0);}
+.skip-note{color:rgba(255,255,255,.4);font-size:clamp(.7rem,2.8vw,.82rem);}
+@media (prefers-reduced-motion:reduce){.scan-hint .dot{animation:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <img src="shield_logo.png" alt="Designer Systems Limited">
+    <div class="name">DESIGNER SYSTEMS</div>
+    <div class="sub">Limited</div>
+  </div>
+
+  <div class="headline">SCAN <span class="accent">&amp;</span> WIN</div>
+  <div class="tag">Point your phone camera at the code to register and spin the prize wheel.</div>
+
+  <div class="qr-panel">
+    <img src="QR-Code.jpeg" alt="Scan to play">
+  </div>
+  <div class="scan-hint"><span class="dot"></span>Scan with your phone camera</div>
+
+  <div class="divider">or</div>
+
+  <!-- SKIP -> opens the registration form; the form then sends players to the spin wheel -->
+  <a class="skip-btn" href="https://tally.so/r/PdyPvb">Skip &amp; Start Here &rarr;</a>
+  <div class="skip-note">Tap Skip to fill the form on this screen.</div>
+</div>
+</body>
+</html>
