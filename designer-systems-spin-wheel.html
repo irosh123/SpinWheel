@@ -86,8 +86,8 @@ body {
 /* ── Wheel scene ── */
 .wheel-scene {
   position:relative;
-  width: min(80vw,62vh,460px);
-  height:min(80vw,62vh,460px);
+  width: min(95vw,90vh,690px);
+  height:min(95vw,90vh,690px);
   flex-shrink:0;
 }
 
@@ -290,10 +290,14 @@ body {
 .cp.R { animation:fallRight linear forwards; }
 .sp   { position:absolute; opacity:0; pointer-events:none; line-height:1; animation:sparkPop ease-out forwards; }
 
-/* Landscape phone */
+/* Landscape — keep logo on top, wheel below; shrink wheel + drop down so logo shows */
+@media (orientation:landscape) {
+  .game-wrap   { margin-top:0; justify-content:flex-start; gap:clamp(6px,1.5vh,14px); }
+  .wheel-scene { width:min(66vh,62vw,690px); height:min(66vh,62vw,690px); }
+}
+/* Short landscape phones — hide subtitle, keep wheel within height */
 @media (max-height:500px) and (orientation:landscape) {
-  .game-wrap   { flex-direction:row; gap:14px; }
-  .wheel-scene { width:min(52vh,80vw,320px); height:min(52vh,80vw,320px); }
+  .wheel-scene { width:min(72vh,55vw,480px); height:min(72vh,55vw,480px); }
   .header-sub  { display:none; }
 }
 /* Reduced motion */
